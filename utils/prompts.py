@@ -16,7 +16,14 @@ SUMMARY:
 linkedin_scraper_prompt = '''
 
 Act as an expert outbound researcher.
-Write a detailed summary of the following person based on the Linkedin data. I'm looking for information such as
+Write a detailed summary of the following person based on the Linkedin data. I'm lookinfor g information such as:
+- Name of the companies that he/she worked with and roles
+- Past results from clients
+- Successfully transitioning from working in a job to starting their own business
+- College education
+- City where they are
 
+"{text}"
 
+SUMMARY:
 '''
