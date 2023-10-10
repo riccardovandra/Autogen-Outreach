@@ -5,6 +5,7 @@ from langchain.chat_models import ChatOpenAI
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.chains.summarize import load_summarize_chain
 from langchain.prompts import PromptTemplate
+from utils import prompts
 import openai
 from dotenv import load_dotenv
 import os
@@ -40,11 +41,12 @@ def summarize(content, type):
     text_splitter = RecursiveCharacterTextSplitter(
         separators=["\n\n", "\n"], chunk_size=10000, chunk_overlap=500)
     docs = text_splitter.create_documents([content])
-    map_prompt = """
-    Write a detailed summary of the following text for a research purpose:
-    "{text}"
-    SUMMARY:
-    """
+
+    if type == 'linkedin':
+        map_prompt = prompts.linkedin_scraper_prompt
+    elif type == 'website':
+        map_prompt = prompts.website_scraper_prompt
+
     map_prompt_template = PromptTemplate(
         template=map_prompt, input_variables=["text"])
 
